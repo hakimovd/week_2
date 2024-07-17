@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Workers</title>
+</head>
+<body>
+    <p> All Workers</p>
+    <div th:each="worker : ${workers}">
+        <a th:href="@{/workers/{id}(id=${worker.getId()})}" th:text="${worker.getName()}"></a>
+    </div>
+
+    <br>
+
+    <form th:action="@{/workers/new}">
+        <input type="submit" value="Add worker">
+    </form>
+</body>
+</html>

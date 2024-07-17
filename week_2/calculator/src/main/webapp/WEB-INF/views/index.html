@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/calculator}">
+    <label for="one_number">One number </label>
+    <input type="text" name="one_number" id="one_number"/>
+    <br>
+    <br>
+    <label for="operator">Select operator</label>
+    <select name="operator" id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <br>
+    <br>
+    <label for="two_number">Two number</label>
+    <input type="text" name="two_number" id="two_number">
+    <input type="submit" value="Calculate"/>
+</form>
+
+<p th:text="${result}"></p>
+
+<p>Calculations history:</p>
+<div th:each="expression: ${expressions}">
+    <p th:text="${expression}">user</p>
+
+</div>
+<!---->
+
+</body>
+</html>

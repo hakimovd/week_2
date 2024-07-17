@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All</title>
+</head>
+<body>
+<p> All Workers</p>
+<div th:each="worker : ${workers}">
+    <p th:text="${worker.getName()}">tr</p>
+</div>
+<div th:each="worker : ${workers}">
+    <p th:text="${worker.getName()}">tr</p>
+</div>
+</body>
+</html>

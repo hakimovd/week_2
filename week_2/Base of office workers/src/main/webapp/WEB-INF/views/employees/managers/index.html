@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Managers</title>
+</head>
+<body>
+<p> All Managers</p>
+<div th:each="manager : ${managers}">
+    <a th:href="@{/managers/{id}(id=${manager.getId()})}" th:text="${manager.getName()}"></a>
+</div>
+<br>
+<form th:action="@{/managers/new}">
+    <input type="submit" value="Add manager">
+</form>
+</body>
+</html>

@@ -1,18 +1,12 @@
 package com.hakimov.office.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
+import lombok.*;
 
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
-@Setter
-@Getter
+@Data
 public class Manager {
 
     private int id;
@@ -20,6 +14,6 @@ public class Manager {
     private String surname;
     private int age;
     private int experience;
-    private List workersId;
+    private List<Integer> workersId;
 
 }

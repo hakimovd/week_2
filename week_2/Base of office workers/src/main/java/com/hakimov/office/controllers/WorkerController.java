@@ -18,7 +18,7 @@ public class WorkerController {
 
     @GetMapping()
     public String index (Model model) {
-        model.addAttribute("workers", workerDAO.index());
+        model.addAttribute("workers", workerDAO.getWorkersList());
         return "employees/workers/index";
     }
 

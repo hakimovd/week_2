@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class WorkerDAO {
@@ -14,14 +15,36 @@ public class WorkerDAO {
     {
         // Просто объекты для массовки
         workerslist = new ArrayList<>();
-        workerslist.add(new Worker(++WORKER_ID, "Anton", "Gorodetsky", 33, 5, "Assistant", 1));
-        workerslist.add(new Worker(++WORKER_ID, "Bruce ", "Willis", 69, 23, "Secretary", 1));
-        workerslist.add(new Worker(++WORKER_ID, "Pablo  ", "Picasso", 91, 68, "Secretary", 2));
-        workerslist.add(new Worker(++WORKER_ID, "Magic   ", "Johnson", 64, 30, "Assistant", 2));
+        workerslist.add(new Worker(++WORKER_ID, "Anton", "Gorodetsky", 33, 5, "Assistant",0));
+        workerslist.add(new Worker(++WORKER_ID, "Bruce", "Willis", 69, 23, "Developer", 0));
+        workerslist.add(new Worker(++WORKER_ID, "Pablo", "Picasso", 91, 68, "Secretary", 0));
+        workerslist.add(new Worker(++WORKER_ID, "Magic", "Johnson", 64, 30, "Assistant", 0));
 
     }
 
-    public List<Worker> index() {
+    public List<Worker> updateManagerId(List<Integer> ids, int managerId) {
+
+        for(Integer id : ids) {
+            for(Worker worker : workerslist) {
+                if(worker.getId() == id) {
+                    worker.setManagerId(managerId);
+                }
+            }
+        }
+        return null;
+    }
+
+    //        List<Worker> listWorkers = getWorkersList().stream()
+//                        .filter(worker -> ids.contains(worker.getId()))
+//                        .collect(Collectors.toList());
+//        listWorkers.stream().map(worker -> {
+//            worker.setManagerId(managerId);
+//            return worker;
+//        }).collect(Collectors.toList());
+//        updateWorkersList(listWorkers);
+//        System.out.println(listWorkers);
+
+    public List<Worker> getWorkersList() {
         return workerslist;
     }
 
@@ -50,6 +73,13 @@ public class WorkerDAO {
         workerToBeUpdated.setManagerId(updatedWorker.getManagerId());
 
     }
+
+//    public void updateWorkersList (List<Worker> workers) {
+//
+//        for(Worker worker : workers) {
+//            update(worker.getId(), worker);
+//        }
+//    }
 
     public void delete(int id) {
         workerslist.removeIf(worker -> worker.getId() == id);

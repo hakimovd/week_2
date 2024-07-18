@@ -9,6 +9,7 @@ import java.util.List;
 @Component
 public class ManagerDAO {
     private static int MANAGER_ID;
+    private final WorkerDAO workerDAO;
     private List<Manager> managerslist;
     private List<Integer> workersId;
 
@@ -19,19 +20,17 @@ public class ManagerDAO {
         managerslist.add(new Manager(++MANAGER_ID, "Domenico", "Trezzini", 64, 33,workersId = new ArrayList<>()));
     }
 
-    public List<Manager> index () {
-        return managerslist;
+    public ManagerDAO(WorkerDAO workerDAO) {
+        this.workerDAO = workerDAO;
     }
 
-    public Manager addWorkers (Manager manager, int workersId) {
-        manager.getWorkersId().add(workersId);
-        return manager;
+    public List<Manager> index () {
+        return managerslist;
     }
 
     public Manager show(int id) {
         for (Manager manager : managerslist) {
             if (manager.getId() == id) {
-                System.out.println(manager.getWorkersId());
                 return manager;
             }
         }
@@ -41,8 +40,18 @@ public class ManagerDAO {
     public void save(Manager manager) {
         manager.setId(++MANAGER_ID);
         managerslist.add(manager);
+        workerDAO.updateManagerId(manager.getWorkersId(), manager.getId());
+
     }
 
+    //Добавляем работника менеджеру
+    public void addWorkers (Manager updateManager) {
+        Manager managerToBeUpdated = show(updateManager.getId());
+        managerToBeUpdated.setWorkersId(updateManager.getWorkersId());
+        workerDAO.updateManagerId(updateManager.getWorkersId(), updateManager.getId());
+    }
+
+    //
     public void update(int id, Manager updatedManager) {
         Manager managerToBeUpdated = show(id);
 

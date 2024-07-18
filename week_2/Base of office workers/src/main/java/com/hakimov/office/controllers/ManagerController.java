@@ -25,13 +25,13 @@ public class ManagerController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("manager", managerDAO.show(id));
-        model.addAttribute("workers", workerDAO.index());
+        model.addAttribute("workers", workerDAO.getWorkersList());
         return "employees/managers/show";
     }
 
     @GetMapping("/new")
     public String newManager(@ModelAttribute Manager manager, Model model) {
-        model.addAttribute("workerslist", workerDAO.index());
+        model.addAttribute("workerslist", workerDAO.getWorkersList());
         return "employees/managers/new";
     }
 
@@ -44,7 +44,7 @@ public class ManagerController {
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("manager", managerDAO.show(id));
-        model.addAttribute("workerslist", workerDAO.index());
+        model.addAttribute("workerslist", workerDAO.getWorkersList());
         return "employees/managers/edit";
     }
 
@@ -54,14 +54,26 @@ public class ManagerController {
         return "redirect:/managers";
     }
 
+    // Переход на страницу для добавления работников
+    @GetMapping("/{id}/add_worker")
+    public String addWorker(@PathVariable("id") int id, Model model) {
+        model.addAttribute("manager", managerDAO.show(id));
+        model.addAttribute("workerslist", workerDAO.getWorkersList());
+        return "employees/managers/add_worker";
+    }
+
+    @PatchMapping("/{id}/add")
+    public String updateWorkerlist (@ModelAttribute("manager") Manager manager) {
+        managerDAO.addWorkers(manager);
+        return "redirect:/managers";
+    }
+
+
     @DeleteMapping("/{id}")
     public String delete (@PathVariable("id") int id) {
         managerDAO.delete(id);
         return "redirect:/managers";
     }
-
-
-
 
 }
 

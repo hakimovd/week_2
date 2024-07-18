@@ -9,24 +9,15 @@ Name: <p th:text="${manager.getName()}"></p>
 Surname: <p th:text="${manager.getSurname()}"></p>
 Age: <p th:text="${manager.getAge()}"></p>
 Experience: <p th:text="${manager.getExperience()}"></p>
-
 Workers: <div th:each="id : ${manager.getWorkersId()}">
             <div th:each="worker : ${workers}">
                 <p th:if="${worker.getId()}==${id}" th:text="${worker.getName() + worker.getSurname()}"></p>
             </div>
         </div>
 
-<!--<div th:each="id : ${manager.getWorkersId()}">-->
-<!--    <a th:href="@{/managers/{id}(id=${manager.getId()})}" th:text="${id}"></a>-->
-<!--</div>-->
-<!--<p th:text="${workers}"></p>-->
-
-<!--<div th:each="manId : ${manager.getWorkersId()}">-->
-<!--    <p th:each="workId : ${workers}"></p>-->
-<!--    <p th:if="${workId.getId()}==${manId}"  th:text="${workId.getId()}"></p>-->
-<!--</div>-->
-
-<!--Manager:<a th:href="@{/managers/{id}(id=${worker.getManagerId()})}" th:text="${manager.getName()}"></a>-->
+<form th:action="@{/managers/{id}/add_worker(id=${manager.getId()})}">
+    <input type="submit" value="Add worker">
+</form>
 
 <form th:action="@{/managers/{id}/edit(id=${manager.getId()})}">
     <input type="submit" value="Edit">

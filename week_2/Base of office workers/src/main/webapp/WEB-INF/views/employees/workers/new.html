@@ -27,14 +27,14 @@
     <br>
     <br>
 
-    <label for="managerlist">Assign to manager</label>
+<!--    <label for="managerlist">Assign to manager</label>-->
 
-    <select th:field="*{managerId}" id="managerlist">
-        <option th:each="manager : ${managerslist}"
-                th:value="${manager.getId()}"
-                th:text="${manager.getName() + ' ' + manager.getSurname()}">
-        </option>
-    </select>
+<!--    <select th:field="*{managerId}" id="managerlist">-->
+<!--        <option th:each="manager : ${managerslist}"-->
+<!--                th:value="${manager.getId()}"-->
+<!--                th:text="${manager.getName() + ' ' + manager.getSurname()}">-->
+<!--        </option>-->
+<!--    </select>-->
 
     <input type="submit" value="Add">
 </form>

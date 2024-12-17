@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Worker</title>
+</head>
+<body>
+
+
+<form th:method="PATCH" th:action="@{/workers/{id}(id=${worker.getId()})}" th:object="${worker}">
+    <label for="name">Name:</label>
+    <input type="text" th:field="*{name}" id="name">
+    <br>
+    <br>
+    <label for="surname">Surname:</label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <br>
+    <br>
+    <label for="age">Age:</label>
+    <input type="text" th:field="*{age}" id="age">
+    <br>
+    <br>
+    <label for="experience">Experience:</label>
+    <input type="text" th:field="*{experience}" id="experience">
+    <br>
+    <br>
+    <label for="specialization">Specialization:</label>
+    <input type="text" th:field="*{specialization}" id="specialization">
+    <br>
+    <br>
+
+    <label for="managerlist">Assign to manager</label>
+
+    <select th:field="*{managerId}" id="managerlist">
+        <option th:each="manager : ${managerslist}"
+                th:value="${manager.getId()}"
+                th:text="${manager.getName() + ' ' + manager.getSurname()}">
+        </option>
+    </select>
+
+    <input type="submit" value="Update">
+</form>
+
+</body>
+</html>

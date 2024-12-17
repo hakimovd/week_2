@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Worker</title>
+</head>
+<body>
+    Name: <p th:text="${worker.getName()}"></p>
+    Surname: <p th:text="${worker.getSurname()}"></p>
+    Age: <p th:text="${worker.getAge()}"></p>
+    Experience: <p th:text="${worker.getExperience()}"></p>
+    Specialization:<p th:text="${worker.getSpecialization()}"></p>
+    Manager:<a th:href="@{/managers/{id}(id=${worker.getManagerId()})}" th:text="${manager.getName()}"></a>
+
+    <form th:action="@{/workers/{id}/edit(id=${worker.getId()})}">
+        <input type="submit" value="Edit">
+    </form>
+
+    <form th:method="DELETE" th:action="@{/workers/{id}(id=${worker.getId()})}">
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>

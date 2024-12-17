@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weapons Catalog</title>
+</head>
+<body>
+    <h1>Weapons Catalog</h1>
+    <div th:each="weapon : ${weapons}">
+        <a th:href="@{/weapons/{id}(id=${weapon.getId()})}" th:text="${weapon.getName()}">it</a>
+    </div>
+    <br>
+    <br>
+    <form th:action="@{/weapons/new}">
+        <input type="submit" value="Add weapon">
+    </form>
+
+</body>
+</html>

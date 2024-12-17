@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Weapons</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/weapons/{id}(id=${weapon.getId()})}" th:object="${weapon}">
+    <label for="name">Weapon name:</label>
+    <input type="text" th:field="*{name}" id="name">
+    <br>
+    <br>
+    <label for="type">Weapon type:</label>
+    <input type="text" th:field="*{type}" id="type">
+    <br>
+    <br>
+    <label for="m_size">Magazine Size:</label>
+    <input type="text" th:field="*{magazineSize}" id="m_size">
+    <input type="submit" value="Add">
+</form>
+
+</body>
+</html>

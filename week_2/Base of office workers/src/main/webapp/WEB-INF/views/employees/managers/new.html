@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Manager</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/managers}" th:object="${manager}">
+    <label for="name">Name:</label>
+    <input type="text" th:field="*{name}" id="name">
+    <br>
+    <br>
+    <label for="surname">Surname:</label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <br>
+    <br>
+    <label for="age">Age:</label>
+    <input type="text" th:field="*{age}" id="age">
+    <br>
+    <br>
+    <label for="experience">Experience:</label>
+    <input type="text" th:field="*{experience}" id="experience">
+    <br>
+    <br>
+    <label for="workerslist">Select an workers</label>
+    <ul>
+        <li th:each="worker : ${workerslist}" id="workerslist">
+            <div th:if="${worker.getManagerId()}==${0}">
+                <input type="checkbox" th:field="*{workersId}" th:value="${worker.getId()}">
+                <label th:text="${worker.getName() + ' ' + worker.getSurname()}"></label>
+            </div>
+        </li>
+    </ul>
+
+    <input type="submit" value="Add">
+</form>
+</body>
+</html>

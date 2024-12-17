@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Worker</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/managers/{id}/add/(id=${manager.getId()})}" th:object="${manager}">
+
+    <p th:text="${manager.getName() + ' ' + manager.getSurname()}"/>
+    <label for="workerslist">Select an workers</label>
+    <ul>
+        <li th:each="worker : ${workerslist}" id="workerslist">
+            <div th:if="${worker.getManagerId()}==${0}">
+                <input type="checkbox" th:field="*{workersId}" th:value="${worker.getId()}">
+                <label th:text="${worker.getName() + ' ' + worker.getSurname()}"></label>
+            </div>
+        </li>
+    </ul>
+
+    <input type="submit" value="Add">
+</form>
+</body>
+</html>
